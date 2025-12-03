@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Biblioteca de Livros</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+
+/* ========================================= */
+/* 🌈 VARIÁVEIS BASE (tema padrão) */
+/* ========================================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial;
+}
+
+/* ========================================= */
+/* HEADER */
+/* ========================================= */
+
+header {
+  max-width: 1100px;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.header-buttons button {
+  background: var(--accent);
+  border: 1px solid var(--chip-border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ========================================= */
+/* CONTROLS */
+/* ========================================= */
+
+.controls {
+  display: grid;
+  gap: 12px;
+  max-width: 1100px;
+  justify-content: center;
+  grid-template-columns: 1fr auto auto auto auto auto auto;
+  margin: 16px auto;
+  align-items: center;
+}
+
+
+@media (max-width: 700px) {
+  .controls {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.controls input,
+.controls select,
+.controls button {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--chip-border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.controls button {
+  cursor: pointer;
+  background: var(--accent);
+}
+
+/* ========================================= */
+/* STATS */
+/* ========================================= */
+
+.stats {
+  max-width: 1100px;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.stat {
+  flex: 1 1 160px;
+  min-width: 160px;
+  background: var(--card);
+  border: outset var(--accent);
+  border-radius: 10px;
+  padding: 12px;
+}
+
+.stat b {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.stat .val {
+  font-size: 18px;
+  margin-top: 6px;
+}
+
+/* ========================================= */
+/* GRID */
+/* ========================================= */
+
+.grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.card {
+  position: relative; /* necessário para posicionamento absoluto do coração */
+  background: var(--card);
+  border: outset 2px var(--accent); /* recomendo definir a largura do border */
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fav-heart {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--accent); 
+  cursor: default;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.author {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+  cursor: pointer;
+}
+.chip {
+  background: color-mix(in srgb, var(--accent) 25%, var(--card));
+  border: 1px solid var(--chip-border);
+  color: var(--text);
+  font-size: 11px;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 99px;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--accent);
+  color: var(--text);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+/* ========================================= */
+/* FOOTER */
+/* ========================================= */
+
+.footer {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 24px;
+  font-size: 12px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ========================= */
+/* 🎨 Temas disponíveis */
+/* ========================= */
+.theme-dark {
+  --bg: #0a0c10;
+  --card: #11141a;
+  --text: #e8ecf2;
+  --muted: #7b8592;
+  --accent: #4da3ff;
+  --chip: #1a1f27;
+  --chip-border: #2b3542;
+}
+.theme-dark-academia {
+  --bg: #1f1b17;
+  --card: #493b30;
+  --text: #f7f2e7;
+  --muted: #ddd5ca;
+  --accent: #ebac6d;
+  --chip: #3a3028;
+  --chip-border: #6b5848;
+}
+.theme-skoob {
+  --bg: #e9f4ff;
+  --card: #ffffff;
+  --text: #1a1e25;
+  --muted: #62758a;
+  --accent: #1f8bff;
+  --chip: #d7e9ff;
+  --chip-border: #95c4ff;
+}
+.theme-tumblr {
+  --bg: #36465d;
+  --card: #465a77;
+  --text: #ffffff;
+  --muted: #cfd6e0;
+  --accent: #9b59b6;
+  --chip: #529ECC;
+  --chip-border: #5a6b85;
+}
+
+.theme-gray {
+  --bg: #2c2d2f;
+  --card: #393b3e;
+  --text: #e4e4e4;
+  --muted: #a8a8a8;
+  --accent: #ffdf57;
+  --chip: #4a4c4f;
+  --chip-border: #76787c;
+}
+/* ========================================= */
+/* BOTÕES DE TEMAS (corrigidos!) */
+/* ========================================= */
+
+.themes {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+
+/* CORES FIXAS DAS BOLINHAS */
+.theme-option {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1); /* leve transparência */
+}
+
+.theme-option.theme-dark {
+  border-color: #171b27;
+  background: rgba(23, 27, 39, 0.3);
+}
+
+.theme-option.theme-dark-academia {
+  border-color: #c08a5c;
+  background: rgba(192, 138, 92, 0.3);
+}
+
+.theme-option.theme-skoob {
+  border-color: #0074d9;
+  background: rgba(0, 116, 217, 0.3);
+}
+
+.theme-option.theme-tumblr {
+  border-color: #44536d;
+  background: rgba(68, 83, 109, 0.3);
+}
+
+.theme-option.theme-gray {
+  border-color: #3a3a41;
+  background: rgba(58, 58, 65, 0.3);
+}
+
+/* Efeito hover */
+.theme-option:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+</style>
+
+</head>
+<body>
+<header>
+<h1>📚 Biblioteca</h1>
+
+  <div class="themes">
+    <div class="theme-option theme-dark" onclick="setTheme('theme-dark')"></div>
+    <div class="theme-option theme-dark-academia" onclick="setTheme('theme-dark-academia')"></div>
+    <div class="theme-option theme-skoob" onclick="setTheme('theme-skoob')"></div>
+    <div class="theme-option theme-tumblr" onclick="setTheme('theme-tumblr')"></div>
+    <div class="theme-option theme-gray" onclick="setTheme('theme-gray')"></div>
+  </div>
+
+  <div class="header-buttons">
+      <button id="back">📚</button>
+      <button id="charts">📊</button>
+      <button id="tags">🏷️</button>
+      <button id="flashback">🌟</button>
+  </div>
+</header>
+
+<div class="controls">
+  <input id="q" type="search" placeholder="Buscar por título, autor, série, tags ou ISBN..." />
+  <select id="year"><option value="">Ano</option></select>
+  <select id="month"><option value="">Mês</option></select>
+  <select id="lang"><option value="">Linguagem</option></select>
+  <select id="format">
+    <option value="">Formato</option>
+    <option value="K">Kindle</option>
+    <option value="F">Físico</option>
+  </select>
+  <button id="clear">↻</button>
+</div>
+
+<section class="stats" id="stats">
+  <div class="stat"><b>Total de livros:</b><div class="val" id="stat-count">–</div></div>
+  <div class="stat"><b>Total de páginas:</b><div class="val" id="stat-pages">–</div></div>
+  <div class="stat"><b>Nota média:</b><div class="val" id="stat-rating">–</div></div>
+  <div class="stat"><b>❤︎</b><div class="val" id="stat-fav">–</div></div>
+</section>
+
+<main class="grid" id="grid"></main>
+
+<div class="footer">Carregando dados de books.json</div>
+
+<script>
+const state = {
+  data: [],
+  filtered: [],
+  q: "",
+  year: "",
+  month: "",
+  lang: "",
+  format: ""
+};
+
+const mesesOrdem = [
+  "Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+  "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"
+];
+
+function normalize(s) {
+  return (s || "")
+    .toString()
+    .toLowerCase()
+    .trim()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function getTags(b) {
+  return [b.TAG1, b.TAG2, b.TAG3].filter(t => typeof t === "string" && t.trim() !== "");
+}
+
+function applyFilters() {
+  const qn = normalize(state.q);
+
+  state.filtered = state.data.filter(b => {
+    // Busca (título, autor, série, ISBN, qualquer tag)
+    const titleN = normalize(b.TITLE);
+    const authorN = normalize(b.AUTHOR);
+    const seriesN = normalize(b.SERIES);
+    const isbnN = normalize(b.ISBN);
+    const tagsN = getTags(b).map(t => normalize(t));
+
+    const matchesText =
+      !qn ||
+      titleN.includes(qn) ||
+      authorN.includes(qn) ||
+      seriesN.includes(qn) ||
+      isbnN.includes(qn) ||
+      tagsN.some(t => t.includes(qn));
+
+    // Filtros
+    const matchesYear = !state.year || String(b.YEAR) === String(state.year);
+    const matchesMonth = !state.month || String(b.MONTH) === String(state.month);
+    const matchesLang = !state.lang || String(b.LANGUAGE) === String(state.lang);
+    const matchesFormat = !state.format || String(b.FORMAT) === String(state.format);
+
+    return matchesText && matchesYear && matchesMonth && matchesLang && matchesFormat;
+  });
+
+  renderStats(state.filtered);
+  renderGrid(state.filtered);
+}
+
+function renderStats(list) {
+  const totalLivros = list.length;
+  const totalPaginas = list.reduce((acc, x) => acc + (Number(x.PAGES) || 0), 0);
+  const ratingMedia = totalLivros ? (list.reduce((acc, x) => acc + (Number(x.RATING) || 0), 0) / totalLivros) : 0;
+  const favYes = list.filter(x => (x.FAV || "").toUpperCase() === "YES").length;
+
+  document.getElementById("stat-count").textContent = totalLivros.toLocaleString("pt-BR");
+  document.getElementById("stat-pages").textContent = totalPaginas.toLocaleString("pt-BR");
+  document.getElementById("stat-rating").textContent = ratingMedia.toFixed(2);
+  document.getElementById("stat-fav").textContent = favYes.toLocaleString("pt-BR");
+}
+
+function cardHTML(b) {
+  const tags = [b.TAG1, b.TAG2, b.TAG3].filter(Boolean);
+  const fav = (b.FAV || "").toUpperCase() === "YES";
+  const rating = Number(b.RATING) || 0;
+
+  const fullStars = Math.floor(rating);
+  const hasHalf = rating % 1 >= 0.5;
+  let ratingStars = "★".repeat(fullStars);
+  if (hasHalf) ratingStars += "½";
+
+  return `
+    <article class="card">
+      ${fav ? `<span class="fav-heart" title="Favorito">❤︎</span>` : ``}
+      <div class="title">${b.TITLE} <span class="chips" title="Nota">${ratingStars}</span></div>
+      <div class="author">${b.AUTHOR}</div>
+      <div class="meta">
+        <span class="badge" title="Ano">${b.YEAR ?? ""}</span>
+        <span class="badge" title="Mês">${b.MONTH || ""}</span>
+        <span class="badge" title="Formato">${b.FORMAT || ""}</span>
+        <span class="badge" title="Linguagem">${b.LANGUAGE || ""}</span>
+        <span class="badge" title="Páginas">${b.PAGES ?? ""} pág.</span>
+
+        ${
+          tags.length
+            ? `<div class="chips">
+                 ${tags
+                   .map(
+                     t =>
+                       `<span class="chip" onclick="searchByTag('${t}')">${t}</span>`
+                   )
+                   .join("")}
+               </div>`
+            : ``
+        }
+      </div>
+    </article>
+  `;
+}
+
+function searchByTag(tag) {
+  state.q = tag; // define a busca pelo texto da tag
+  document.getElementById("q").value = tag; // atualiza o campo de busca
+  applyFilters(); // aplica os filtros normalmente
+}
+
+function renderGrid(list) {
+  document.getElementById("grid").innerHTML = list.map(cardHTML).join("");
+}
+
+function populateFilters(data) {
+  const yearSel = document.getElementById("year");
+  const monthSel = document.getElementById("month");
+  const langSel = document.getElementById("lang");
+
+  // Anos
+  const years = Array.from(new Set(data.map(d => d.YEAR))).filter(Boolean).sort((a,b) => a-b);
+  years.forEach(y => {
+    const opt = document.createElement("option");
+    opt.value = y; opt.textContent = y;
+    yearSel.appendChild(opt);
+  });
+
+  // Meses (usar ordem fixa)
+  mesesOrdem.forEach(m => {
+    const opt = document.createElement("option");
+    opt.value = m; opt.textContent = m;
+    monthSel.appendChild(opt);
+  });
+
+  // Linguagens
+  const langs = Array.from(new Set(data.map(d => d.LANGUAGE))).filter(Boolean).sort();
+  langs.forEach(l => {
+    const opt = document.createElement("option");
+    opt.value = l; opt.textContent = l;
+    langSel.appendChild(opt);
+  });
+}
+// Função para aplicar tema
+function setTheme(themeClass) {
+  document.body.className = themeClass;
+  localStorage.setItem("selectedTheme", themeClass); // salva escolha
+}
+
+// Ao carregar a página, aplica o tema salvo
+document.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("selectedTheme");
+  if (savedTheme) {
+    document.body.className = savedTheme;
+  } else {
+    document.body.className = "theme-dark"; // tema padrão
+  }
+});
+
+// Eventos
+document.getElementById("q").addEventListener("input", (e) => {
+  state.q = e.target.value;
+  applyFilters();
+});
+document.getElementById("year").addEventListener("change", (e) => {
+  state.year = e.target.value;
+  applyFilters();
+});
+document.getElementById("month").addEventListener("change", (e) => {
+  state.month = e.target.value;
+  applyFilters();
+});
+document.getElementById("lang").addEventListener("change", (e) => {
+  state.lang = e.target.value;
+  applyFilters();
+});
+document.getElementById("format").addEventListener("change", (e) => {
+  state.format = e.target.value;
+  applyFilters();
+});
+document.getElementById("clear").addEventListener("click", () => {
+  state.q = ""; state.year = ""; state.month = ""; state.lang = ""; state.format = "";
+  document.getElementById("q").value = "";
+  document.getElementById("year").value = "";
+  document.getElementById("month").value = "";
+  document.getElementById("lang").value = "";
+  document.getElementById("format").value = "";
+  applyFilters();
+});
+// Navegação dos botões
+document.getElementById("charts")?.addEventListener("click", () => {
+  location.href = "charts.html";
+});
+
+document.getElementById("tags")?.addEventListener("click", () => {
+  location.href = "tags.html";
+});
+
+document.getElementById("flashback")?.addEventListener("click", () => {
+  location.href = "flashback.html";
+});
+
+document.getElementById("back")?.addEventListener("click", () => {
+  location.href = "index.html";
+});
+
+// Carregar dados
+fetch("./books.json")
+  .then(r => r.json())
+  .then(data => {
+    // Ordenar por ano desc e mês desc
+    state.data = Array.isArray(data) ? data.sort((a, b) => {
+      if (b.YEAR !== a.YEAR) return b.YEAR - a.YEAR;
+      const mesA = mesesOrdem.indexOf(a.MONTH);
+      const mesB = mesesOrdem.indexOf(b.MONTH);
+      return mesB - mesA;
+    }) : [];
+
+    populateFilters(state.data);
+    applyFilters();
+    document.querySelector(".footer").textContent = `Carregado ${state.data.length} livros de books.json`;
+  })
+  .catch(err => {
+    console.error(err);
+    document.querySelector(".footer").textContent = "Erro ao carregar books.json. Verifique se o arquivo está no mesmo diretório.";
+  });
+</script>
+
+</body>
+</html>

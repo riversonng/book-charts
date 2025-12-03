@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>🌟 Flashback - Biblioteca</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial;
+}
+
+/* ========================================= */
+/* HEADER */
+/* ========================================= */
+header {
+  max-width: 1100px;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.header-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.header-buttons button {
+  background: var(--accent);
+  border: 1px solid var(--chip-border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ========================================= */
+/* YEAR BLOCK */
+/* ========================================= */
+.year-block {
+  max-width: 1100px;
+  margin: 20px auto;
+  background: var(--card);
+  border: 1px solid var(--chip-border);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.year-block h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.year-analysis {
+  margin: 8px 0 12px;
+  font-size: 0.95em;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ========================================= */
+/* STATS */
+/* ========================================= */
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* centraliza horizontalmente */
+  gap: 5px;
+  text-align: center;
+}
+
+.stat {
+  flex: 1 1 180px;
+  
+  /* aparência glass */
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  
+  border-bottom: 4px solid var(--bg);
+ border-right: 4px solid var(--accent);
+  border-radius: 12px;
+  padding: 16px;
+  
+  color: var(--text);
+  transition: all 0.25s ease;
+}
+
+.stat span {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.year-header {
+  text-align: center;
+}
+
+.divider {
+  flex-basis: 100%;
+  border: none;
+  height: 1px;
+  background: var(--accent);
+  margin: 8px 0;
+}
+  .greatest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 6px 12px;
+    line-height: 0.8;
+    text-align: left;
+  }
+
+  .greatest-grid > div {
+    display: block;
+  }
+
+.barra-container {
+  width: 100%;
+  height: 18px;
+  background: var(--bg);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 6px;
+  display: flex;
+  font-size: 0.75em;
+}
+
+.barra {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;   /* centraliza o texto */
+  color: white;
+  font-weight: 600;
+  white-space: nowrap;       /* não quebra linha */
+  overflow: hidden;
+  text-overflow: clip;       /* esconde texto se faltar espaço */
+  padding: 0 4px;
+  transition: width 0.4s ease;
+}
+
+.kind {
+  background: var(--accent);
+}
+
+.fisico {
+  background: var(--muted);
+}
+
+.pt {
+  background: var(--accent);
+}
+
+.in {
+  background: var(--muted);
+}
+
+/* ========================================= */
+/* TEMAS – EXATAMENTE OS DO TEMA PRINCIPAL */
+/* ========================================= */
+
+.theme-dark {
+  --bg: #0a0c10;
+  --card: #11141a;
+  --text: #e8ecf2;
+  --muted: #7b8592;
+  --accent: #4da3ff;
+  --chip-border: #2b3542;
+}
+
+.theme-dark-academia {
+  --bg: #1f1b17;
+  --card: #493b30;
+  --text: #f7f2e7;
+  --muted: #ddd5ca;
+  --accent: #ebac6d;
+  --chip: #3a3028;
+  --chip-border: #6b5848;
+}
+
+.theme-skoob {
+  --bg: #e9f4ff;
+  --card: #ffffff;
+  --text: #1a1e25;
+  --muted: #62758a;
+  --accent: #1f8bff;
+  --chip-border: #95c4ff;
+}
+
+.theme-tumblr {
+  --bg: #36465d;
+  --card: #465a77;
+  --text: #ffffff;
+  --muted: #cfd6e0;
+  --accent: #9b59b6;
+  --chip: #529ECC;
+  --chip-border: #5a6b85;
+}
+
+
+.theme-gray {
+  --bg: #2c2d2f;
+  --card: #393b3e;
+  --text: #e4e4e4;
+  --muted: #a8a8a8;
+  --accent: #ffdf57;
+  --chip-border: #76787c;
+}
+
+/* ========================================= */
+/* BOTÕES DE TEMAS (corrigidos!) */
+/* ========================================= */
+
+.themes {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+
+/* CORES FIXAS DAS BOLINHAS */
+.theme-option {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1); /* leve transparência */
+}
+
+.theme-option.theme-dark {
+  border-color: #171b27;
+  background: rgba(23, 27, 39, 0.3);
+}
+
+.theme-option.theme-dark-academia {
+  border-color: #c08a5c;
+  background: rgba(192, 138, 92, 0.3);
+}
+
+.theme-option.theme-skoob {
+  border-color: #0074d9;
+  background: rgba(0, 116, 217, 0.3);
+}
+
+.theme-option.theme-tumblr {
+  border-color: #44536d;
+  background: rgba(68, 83, 109, 0.3);
+}
+
+.theme-option.theme-gray {
+  border-color: #3a3a41;
+  background: rgba(58, 58, 65, 0.3);
+}
+
+/* Efeito hover */
+.theme-option:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+
+</style>
+
+</head>
+<body>
+  <header>
+    <h1>🌟 Flashback</h1>
+    <div class="themes">
+      <div class="theme-option theme-dark" onclick="setTheme('theme-dark')"></div>
+      <div class="theme-option theme-dark-academia" onclick="setTheme('theme-dark-academia')"></div>
+      <div class="theme-option theme-skoob" onclick="setTheme('theme-skoob')"></div>
+      <div class="theme-option theme-tumblr" onclick="setTheme('theme-tumblr')"></div>
+      <div class="theme-option theme-gray" onclick="setTheme('theme-gray')"></div>
+    </div>
+
+    <div class="header-buttons">
+      <button id="2026">🦋</button>
+      <button id="back">📚</button>
+      <button id="charts">📊</button>
+      <button id="tags">🏷️</button>
+      <button id="flashback">🌟</button>
+    </div>
+  </header>
+
+  <section id="flashback-container">
+    <!-- Blocos por ano serão renderizados aqui -->
+  </section>
+
+  <script>
+    // Carregar dados
+    fetch("./books.json").then(r=>r.json()).then(data=>{
+      renderFlashback(data);
+    });
+
+function getYearAnalysis(year){
+const analyses = {
+
+2025: `<div id="analysis" style="columns:2; column-gap:4px; text-align:left;">✨ 2025 — Palavra-chave: Maturidade  
+<p>📚 Sobre o ano: Você alterna obras-primas e entretenimento com plena consciência do que cada leitura te oferece. É o ano da segurança e da precisão.  
+<p>💫 Destaques emocionais: Ilíada, Matéria Escura, Nada de Novo no Front, O Hobbit, Kim Jiyoung, 1982, Yellowface, Alchemised, A Seca.  
+<p>🔍 Padrões fortes: Fechamento de trilogias e sagas (Tons de Magia, Papoula, Calluvia). Clássicos e cânone que solidificam fundamentos. Suspenses afiados com autores que você confia.  
+<p>🌿 Essência do ano: Equilíbrio entre densidade e prazer, entre intelecto e emoção.  
+<p>💛 Retrato emocional: Você lê para entender o mundo e também para se sentir intensamente viva dentro dele.</div>`,
+
+2024: `<div id="analysis" style="columns:2; column-gap:4px; text-align:left;">✨ 2024 — Palavra-chave: Fusão  
+<p>📚 Sobre o ano: Um ano de dualidades deliciosas — monster romance, fantasia sombria, Dostoiévski, Atwood, sagas épicas e literatura visceral convivem lado a lado.  
+<p>💫 Destaques emocionais: Babel, Nona Casa, Crime e Castigo, Amigas para Sempre, A Soul to Revive, Jantar Secreto.  
+<p>🔍 Padrões fortes: Maratonas de universos longos e intensos. Exploração de limites emocionais e narrativos. Fidelidade aos universos mesmo com altos e baixos.  
+<p>🌿 Essência do ano: Buscando profundidade e prazer em igual medida — sem se limitar.  
+<p>💛 Retrato emocional: Complexidade plena: estética, visceralidade e pensamento caminhando juntos.</div>`,
+
+2023: `<div id="analysis" style="columns:2; column-gap:4px; text-align:left;">✨ 2023 — Palavra-chave: Vórtice  
+<p>📚 Sobre o ano: Seu ano mais caleidoscópico. Você gira entre terror elegante, dark academia, mangás sensíveis, fantasia romântica e narrativas densas.  
+<p>💫 Destaques emocionais: A Paciente Silenciosa, Good Omens, Como se Fôssemos Vilões, A História Secreta, Elements Series, Deuses Americanos.  
+<p>🔍 Padrões fortes: Estéticas sombrias com alta carga emocional. Graphic novels tocantes e delicadas. Sagas românticas intensas e cheias de tensão.  
+<p>🌿 Essência do ano: Experimentação sem medo — você atravessa sombras, beleza e dor com igual coragem.  
+<p>💛 Retrato emocional: O ano da ousadia literária total.</div>`,
+
+2022: `<div id="analysis" style="columns:2; column-gap:4px; text-align:left;">✨ 2022 — Palavra-chave: Curadoria  
+<p>📚 Sobre o ano: Menos quantidade, mais impacto. Você escolhe com precisão cirúrgica e se aprofunda em romances contemporâneos inteligentes, fantasia adulta e não ficção potente.  
+<p>💫 Destaques emocionais: A Hipótese do Amor, Vergonha, Romance com o Duque, Entre a Foice e o Martelo, O Dossiê Pelicano, Sapiens.  
+<p>🔍 Padrões fortes: Romance com “brain & heart”. Fantasia mitológica e adulta com afeto. Psicologia e história que ampliam mundo.  
+<p>🌿 Essência do ano: Narrativas com propósito, doçura e densidade intelectual.  
+<p>💛 Retrato emocional: Você entende exatamente o que te nutre — e escolhe com confiança.</div>`,
+
+2021: `<div id="analysis" style="columns:2; column-gap:4px; text-align:left;">✨ 2021 — Palavra-chave: Expansão  
+<p>📚 Sobre o ano: Um ano de capricho narrativo. Você aprofunda gêneros, revisita clássicos e explora mistérios com elegância.  
+<p>💫 Destaques emocionais: 1984, A Casa de Hades, O Sangue do Olimpo, Teto Para Dois, Evelyn Hugo, V de Vingança, As Cavernas de Aço.  
+<p>🔍 Padrões fortes: Mistérios e crimes clássicos refinados. Graphic novels impactantes e inesquecíveis. Romances de época com preferências claras.  
+<p>🌿 Essência do ano: Reconhecimento do próprio gosto com nitidez.  
+<p>💛 Retrato emocional: Você lê com consciência, estrutura e sensibilidade.</div>`,
+
+2020: `<div id="analysis" style="columns:2; column-gap:4px; text-align:left;">✨ 2020 — Palavra-chave: Imersão  
+<p>📚 Sobre o ano: O início da maratona. Fantasia juvenil, clássicos intensos e não ficção transformadora se misturam num ritmo vibrante.  
+<p>💫 Destaques emocionais: Orgulho e Preconceito, O Morro dos Ventos Uivantes, Eu, Robô, Durotan, Mulheres que Correm com os Lobos.  
+<p>🔍 Padrões fortes: Maratonas de séries queridas (Harry Potter, Riordan). Fantasia, mitologia e aventura dominantes. Ensaios feministas e sociais que moldam visão de mundo.  
+<p>🌿 Essência do ano: Fome por universos grandes e ideias grandes.  
+<p>💛 Retrato emocional: Você lê com intensidade, entrega e encantamento.</div>`
+
+};
+
+return analyses[year] || "";
+}
+
+    function renderFlashback(list){
+      const grouped = {};
+      list.forEach(b=>{
+        const year = b.YEAR || "Sem ano";
+        if(!grouped[year]) grouped[year] = [];
+        grouped[year].push(b);
+      });
+
+      const container = document.getElementById("flashback-container");
+      container.innerHTML = "";
+
+      const anos = [2025, 2024, 2023, 2022, 2021, 2020];
+
+      anos.forEach(year=>{
+        if(!grouped[year]) return;
+        const books = grouped[year];
+        const block = document.createElement("div");
+        block.className = "year-block";
+
+        // Estatísticas principais
+        const total = books.length;
+        const pages = books.reduce((sum,b)=>sum+(b.PAGES||0),0);
+        const avgRating = (books.reduce((sum,b)=>sum+(b.RATING||0),0)/total).toFixed(2);
+
+        const favs = books.filter(b=>b.FAV=="YES").length;
+        const nota5 = books.filter(b=>b.RATING==5).length;
+
+        // Maior e menor livro em páginas
+const maiorLivro = books.length ? Math.max(...books.map(b=>b.PAGES||0)) : "-";
+const menorLivro = books.length ? Math.min(...books.map(b=>b.PAGES||0)) : "-";
+
+        // Formato
+        const kindle = books.filter(b=>b.FORMAT=="K");
+        const fisico = books.filter(b=>b.FORMAT=="F");
+        const qtdK = kindle.length;
+        const qtdF = fisico.length;
+        const mediaK = qtdK ? (kindle.reduce((s,b)=>s+(b.PAGES||0),0)/qtdK).toFixed(0) : "-";
+        const mediaF = qtdF ? (fisico.reduce((s,b)=>s+(b.PAGES||0),0)/qtdF).toFixed(0) : "-";
+
+        // Idioma
+        const pt = books.filter(b=>b.LANGUAGE=="PT");
+        const inLang = books.filter(b=>b.LANGUAGE=="IN");
+        const qtdPT = pt.length;
+        const qtdIN = inLang.length;
+// Maior e menor livro em páginas + título
+let maiorLivroObj = null;
+let menorLivroObj = null;
+
+if (books.length) {
+  maiorLivroObj = books.reduce((max,b)=> (b.PAGES||0) > (max.PAGES||0) ? b : max, books[0]);
+  menorLivroObj = books.reduce((min,b)=> (b.PAGES||0) < (min.PAGES||0) ? b : min, books[0]);
+}
+
+// Contagem de gêneros
+const generoCount = {};
+books.forEach(b=>{
+  [b.TAG1, b.TAG2, b.TAG3].forEach(tag=>{
+    if(tag){
+      generoCount[tag] = (generoCount[tag]||0)+1;
+    }
+  });
+});
+const topGeneros = Object.entries(generoCount)
+  .sort((a,b)=>b[1]-a[1])
+  .slice(0,5);
+
+const greatest = books.filter(b => b.RATING === 5 && b.FAV === "YES");
+
+let somaKF = qtdK + qtdF;
+let somaPTIN = qtdPT + qtdIN;
+
+block.innerHTML = `
+  <div class="year-header">
+    <h2>${year}</h2>
+    <div class="year-analysis">
+      ${getYearAnalysis(year)}
+    </div>
+  </div>
+
+  <div class="stats">
+
+    <div class="stat"><span>၊၊||၊ Total de livros</span><div class="val">${total}</div></div>
+    <div class="stat">
+      <b>🕮 Páginas do ano</b>
+      <div class="val">
+        ${pages}
+        <br>
+        <small style="font-size:0.8em; color:var(--muted);">
+          Ritmo: ${(pages/365).toFixed(2)} pgs/dia
+        </small>
+      </div>
+    </div>
+    <div class="stat"><span>✦ Média de avaliação</span><div class="val">${avgRating}</div></div>
+    <div class="stat"><span>❤︎ Favoritos</span>
+  <div class="val">
+    ${favs}
+    <br>
+    <small style="font-size:0.8em; color:var(--muted);">
+      ${( (favs/total)*100 ).toFixed(1 )}% do total
+    </small>
+  </div>
+</div>
+<div class="stat"><span>✰ Livros nota 5</span>
+  <div class="val">
+    ${nota5}
+    <br>
+    <small style="font-size:0.8em; color:var(--muted);">
+      ${( (nota5/total)*100 ).toFixed(1 )}% do total
+    </small>
+  </div>
+</div>
+
+    <hr class="divider">
+
+<div class="stat">
+  <div class="val">
+    <div class="barra-container">
+      <div class="barra kind" style="width:${(qtdK / (qtdK + qtdF) * 100).toFixed(1)}%">
+        ${qtdK} Kindle
+      </div>
+      <div class="barra fisico" style="width:${(qtdF / (qtdK + qtdF) * 100).toFixed(1)}%">
+        ${qtdF} Físico
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stat">
+  <div class="val">
+    <div class="barra-container">
+      <div class="barra pt" style="width:${(qtdPT / (qtdPT + qtdIN) * 100).toFixed(1)}%">
+        ${qtdPT} PT
+      </div>
+      <div class="barra in" style="width:${(qtdIN / (qtdPT + qtdIN) * 100).toFixed(1)}%">
+        ${qtdIN} EN
+      </div>
+    </div>
+  </div>
+</div>
+
+    <hr class="divider">
+
+    <div class="stat"><span>📑 Média de páginas</span>
+      <div class="val">📱 ${mediaK} &nbsp; | &nbsp; 📖 ${mediaF}</div>
+    </div>
+
+<div class="stat"><span>♯ Gêneros mais lidos</span>
+  <div class="val">
+    ${topGeneros.map(([g,c])=>`${g} (${c})`).join("<br>")}
+  </div>
+</div>
+<div class="stat"><span>☾☼ Maior/Menor</span>
+▲ ${maiorLivroObj ? maiorLivroObj.TITLE+" ("+maiorLivroObj.PAGES+" pág)" : "-"}<br>
+▼ ${menorLivroObj ? menorLivroObj.TITLE+" ("+menorLivroObj.PAGES+" pág)" : "-"}
+  
+</div>
+
+    <div class="stat"><span>🗓️ Páginas por dia</span>
+      <div class="val">${(pages/365).toFixed(2)}</div>
+    </div>
+
+    <hr class="divider">
+<div class="stat">
+  <span> ❤︎ The Greatest ✦</span>
+  <div class="val greatest-grid">
+    ${greatest.map(b => `<div>• ${b.TITLE}</div>`).join("")}
+  </div>
+</div>
+
+  </div>
+`;
+
+
+        container.appendChild(block);
+      });
+    }
+
+    // Função para aplicar tema
+    function setTheme(themeClass) {
+      document.body.className = themeClass;
+      localStorage.setItem("selectedTheme", themeClass); // salva escolha
+    }
+
+    // Ao carregar a página, aplica o tema salvo
+    document.addEventListener("DOMContentLoaded", () => {
+      const savedTheme = localStorage.getItem("selectedTheme");
+      if (savedTheme) {
+        document.body.className = savedTheme;
+      } else {
+        document.body.className = "theme-dark"; // tema padrão
+      }
+    });
+
+    // Navegação dos botões
+    document.getElementById("charts")?.addEventListener("click", () => {
+      location.href = "charts.html";
+    });
+
+    document.getElementById("tags")?.addEventListener("click", () => {
+      location.href = "tags.html";
+    });
+
+    document.getElementById("flashback")?.addEventListener("click", () => {
+      location.href = "flashback.html";
+    });
+
+    document.getElementById("back")?.addEventListener("click", () => {
+      location.href = "index.html";
+    });
+    
+        document.getElementById("2026")?.addEventListener("click", () => {
+      location.href = "recomendações2026.html";
+    });
+  </script>
+</body>
+
+</html>

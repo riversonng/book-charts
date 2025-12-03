@@ -1,0 +1,241 @@
+:root {
+  --bg: #0f1226;
+  --card: #1a1f3c;
+  --muted: #aab3c5;
+  --text: #f3f5fa;
+  --accent: #6aa9ff;
+  --chip: #2a335e;
+  --chip-border: #3b4680;
+}
+
+/* unificada: base */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: 24px;
+  background: radial-gradient(1200px 600px at 70% 10%, #1d2346 0%, var(--bg) 60%);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial;
+  font-size: 14px;
+  line-height: 1.45;
+}
+h1 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  font-weight: 600;
+}
+.sub {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* unificada: header */
+header {
+  max-width: 1100px;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 600;
+}
+.header-buttons {
+  display: flex;
+  gap: 8px;
+}
+.header-buttons button {
+  background: #243063;
+  border: 1px solid #33407a;
+  border-radius: 8px;
+  color: var(--text);
+  padding: 6px 10px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* unificada: controls */
+.controls {
+  width: 100%;
+  margin: 0 auto 16px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr auto auto auto auto auto auto;
+  align-items: center;
+}
+.controls input,
+.controls select,
+.controls button,
+#back {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid #2b335f;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 14px;
+}
+.controls button,
+#back {
+  cursor: pointer;
+  background: #243063;
+  border-color: #33407a;
+}
+
+/* unificada: stats */
+.stats {
+  max-width: 1100px;
+  margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.stat {
+  flex: 1 1 160px;
+  min-width: 160px;
+  background: var(--card);
+  border: 1px solid #2b335f;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+.stat b {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+}
+.stat .val {
+  font-size: 16px;
+  margin-top: 6px;
+  color: var(--text);
+}
+
+/* específico de charts */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+.stat {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.stat b {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+.stat .val {
+  font-size: 14px;
+}
+.stat-group {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+canvas {
+  background: var(--card);
+  border: 1px solid #2b335f;
+  border-radius: 10px;
+  padding: 10px;
+}
+.charts-grid {
+  max-width: 1100px;
+  margin: 20px auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.chart-card {
+  background: var(--card);
+  border: 1px solid #2b335f;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.chart-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  text-align: center;
+  align-self: flex-start;
+}
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 300px;
+  width: 100%;
+  margin-top: 16px;
+}
+.bar {
+  flex: 0 0 40px;
+  border-radius: 4px 4px 0 0;
+  text-align: center;
+  color: var(--text);
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.bar-label {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* específico de tags */
+.tags-grid {
+  max-width: 1100px;
+  margin: 20px auto;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+.tag-card {
+  background: var(--card);
+  border: 1px solid #2b335f;
+  border-radius: 10px;
+  padding: 14px;
+}
+.tag-card h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.tag-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.tag-card li {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+/* específico de flashback */
+.year-block {
+  max-width: 1100px;
+  margin: 20px auto;
+  background: var(--card);
+  border: 1px solid #2b335f;
+  border-radius: 10px;
+  padding: 16px;
+}
+.year-block h2 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.year-block .stat {
+  background: #20264a; /* override para flashback */
+}

@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Recomendações Literárias 2026</title>
+<style>
+  body {
+    font-family: "Inter", Arial, sans-serif;
+    background: #22223b; /* Space Indigo */
+    color: #f2e9e4; /* Seashell */
+    margin: 0;
+    padding: 40px;
+    line-height: 1.6;
+  }
+
+  h1 {
+    color: #c9ada7; /* Almond Silk */
+    font-size: 34px;
+    margin-bottom: 20px;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  h2 {
+    color: #9a8c98; /* Lilac Ash */
+    margin-top: 28px;
+    font-size: 24px;
+    border-bottom: 2px solid #9a8c98;
+    padding-bottom: 6px;
+  }
+
+  p {
+    color: #f2e9e4; /* Seashell */
+    max-width: 750px;
+    margin: auto;
+    text-align: center;
+    font-size: 17px;
+  }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px; /* mais espaçamento entre os cards */
+    margin-top: 24px;
+  }
+
+  /* FLIP CARD */
+  .card {
+    perspective: 1000px;
+    height: 200px; /* altura fixa para evitar movimento */
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+
+  .card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column; /* permite texto + keywords */
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    font-size: 15px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .card-front {
+    background: #4a4e69; /* Dusty Grape */
+    color: #f2e9e4; /* Seashell */
+    font-weight: bold;
+    border-left: 4px solid #c9ada7; /* Almond Silk */
+  }
+
+  .card-back {
+    background: #9a8c98; /* Lilac Ash */
+    color: #22223b; /* Space Indigo */
+    transform: rotateY(180deg);
+    border-left: 4px solid #f2e9e4; /* Seashell */
+  }
+
+  .keywords {
+    display: block;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #c9ada7; /* Almond Silk */
+    font-style: italic;
+  }
+
+  .back-btn {
+    margin-top: 40px;
+    display: inline-block;
+    padding: 12px 20px;
+    background: #c9ada7; /* Almond Silk */
+    color: #22223b; /* Space Indigo */
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s ease;
+  }
+
+  .back-btn:hover {
+    background: #9a8c98; /* Lilac Ash */
+    color: #f2e9e4; /* Seashell */
+  }
+
+  .center {
+    text-align: center;
+  }
+</style>
+
+</head>
+<body>
+<h1>Recomendações Literárias para 2026</h1>
+
+<p>Baseado em toda a evolução das suas leituras entre 2020 e 2025 — incluindo períodos de exploração intensa, aprofundamentos emocionais, autocuidado literário, consolidação de gostos e renovações criativas — aqui estão os <strong>gêneros e tipos de livros ideais para você explorar em 2026</strong>.</p>
+
+<h2>⭐ Top Gêneros Recomendados</h2>
+
+<div class="grid">
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">
+        Fantasia Contemporânea e Mitológica
+      </div>
+      <div class="card-back">
+        Mundos ricos, simbólicos e expansivos. Ideal para manter seu lado imaginativo ativo sem perder conexão com temas humanos.
+        <span class="keywords">Imaginativo • Simbólico • Expansivo</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">
+        Ficção Literária Emocional
+      </div>
+      <div class="card-back">
+        Histórias densas, sentimentais ou introspectivas combinam com o seu estilo de leitura mais sensível e reflexivo.
+        <span class="keywords">Introspectivo • Sensível • Reflexivo</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">
+        Romance Madura e Dramática
+      </div>
+      <div class="card-back">
+        Narrativas românticas com complexidade emocional, camadas psicológicas e relações que evoluem.
+        <span class="keywords">Complexidade • Emoção • Psicologia</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">
+        Não Ficção Humanista / Social
+      </div>
+      <div class="card-back">
+        Conexão com temas sociais, culturais e psicológicos. Ideal para expandir repertório e pensamento crítico.
+        <span class="keywords">Sociedade • Cultura • Crítica</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">
+        Mistério / Suspense Equilibrado
+      </div>
+      <div class="card-back">
+        Narrativas envolventes, com tensão moderada e boa construção de personagens.
+        <span class="keywords">Tensão • Personagens • Envolvente</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+  <div class="card-inner">
+    <div class="card-front">
+      Fantasia Gótica / Dark Academia Suave
+    </div>
+    <div class="card-back">
+      Estética sombria, intelectual e emocionalmente intensa — combina perfeitamente com sua fase madura e simbólica de leitura.
+      <span class="keywords">Sombrio • Intelectual • Atmosférico</span>
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+<h2>🌙 Menções Honrosas</h2>
+
+<div class="grid">
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">Realismo Mágico</div>
+      <div class="card-back">
+        Mistura perfeita entre emoção, simbolismo e narrativa poética.
+        <span class="keywords">Poético • Simbolismo • Emoção</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">Drama Familiar / Coming of Age</div>
+      <div class="card-back">
+        Ressoa com sua sensibilidade e interesse por desenvolvimento humano.
+        <span class="keywords">Família • Crescimento • Sensibilidade</span>
+      </div>
+    </div>
+  </div>
+  
+<div class="card">
+  <div class="card-inner">
+    <div class="card-front">Drama Psicológico Suave</div>
+    <div class="card-back">
+      Histórias que exploram identidade, mudança, perda e reconstrução. Profundas sem serem pesadas demais.
+      <span class="keywords">Identidade • Emoção • Reflexão</span>
+    </div>
+  </div>
+</div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">Ficção Científica Suave</div>
+      <div class="card-back">
+        Tecnologia com foco em pessoas, não máquinas.
+        <span class="keywords">Tecnologia • Humanismo • Futuro</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">Histórias Curtas e Novellas</div>
+      <div class="card-back">
+        Ótimas para manter ritmo quando o foco oscila.
+        <span class="keywords">Brevidade • Ritmo • Versatilidade</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">Romances de Amadurecimento e Cura</div>
+      <div class="card-back">
+        Combina conforto com profundidade.
+        <span class="keywords">Amadurecimento • Cura • Conforto</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<h2>💤 Leituras Mais Fracas Para o Seu Perfil</h2>
+
+<div class="grid">
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">YA Genérico</div>
+      <div class="card-back">
+        Alguns títulos soam formulaicos ou repetitivos — quando não inovam, perdem seu interesse.
+        <span class="keywords">Previsível • Repetitivo • Baixa Tensão</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">Romance Rápido / Instantâneo</div>
+      <div class="card-back">
+        Histórias corridas ou pouco desenvolvidas costumam receber notas medianas ou baixas.
+        <span class="keywords">Raso • Acelerado • Pouca Construção</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">Tramas Muito Simples</div>
+      <div class="card-back">
+        Livros sem camadas psicológicas ou emocionais quase nunca te prendem.
+        <span class="keywords">Linear • Pouca Profundidade • Previsível</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">Hype Sem Entrega</div>
+      <div class="card-back">
+        Livros muito populares, mas sem boa execução, tendem a te frustrar bastante.
+        <span class="keywords">Alta Expectativa • Baixa Entrega</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">Fantasia Exageradamente Lenta</div>
+      <div class="card-back">
+        Quando a construção do mundo engole o ritmo, você se desconecta facilmente.
+        <span class="keywords">Arrastado • Pouca Ação • Desconexão</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-inner">
+      <div class="card-front">Thrillers “sem risco”</div>
+      <div class="card-back">
+        Histórias que prometem tensão mas entregam pouco impacto nunca te conquistam.
+        <span class="keywords">Baixa Tensão • Conflito Fraco</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+  <div class="center">
+    <a class="back-btn" href="flashback.html">← Voltar para o Flashback</a>
+  </div>
+
+</body>
+</html>

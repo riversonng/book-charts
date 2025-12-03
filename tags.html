@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>🏷️ Tags - Biblioteca</title>
+<style>
+:root {
+  --bg: #0f1226;
+  --card: #1a1f3c;
+  --muted: #aab3c5;
+  --text: #f3f5fa;
+  --accent: #6aa9ff;
+  --chip: #2a335e;
+  --chip-border: #3b4680;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Arial;
+}
+
+/* ========================================= */
+/* HEADER */
+/* ========================================= */
+header {
+  max-width: 1100px;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.header-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.header-buttons button {
+  background: var(--card);
+  border: 1px solid var(--chip-border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 6px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.header-buttons button:hover {
+  background: var(--accent);
+  color: #000;
+}
+
+/* ========================================= */
+/* GRID DAS TAGS */
+/* ========================================= */
+.tags-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.tag-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--chip-border);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: 0.2s;
+}
+
+.tag-card h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.tag-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-card li {
+  display: inline-block;
+  background: color-mix(in srgb, var(--accent) 20%, var(--card));
+  border: none;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px; /* formato pill */
+}
+
+
+/* ========================================= */
+/* TEMAS – IGUAIS AOS DO TEMA PRINCIPAL */
+/* ========================================= */
+.theme-dark {
+  --bg: #0a0c10;
+  --card: #11141a;
+  --text: #e8ecf2;
+  --muted: #7b8592;
+  --accent: #4da3ff;
+  --chip-border: #2b3542;
+}
+
+.theme-dark-academia {
+  --bg: #1f1b17;
+  --card: #493b30;
+  --text: #f7f2e7;
+  --muted: #ddd5ca;
+  --accent: #ebac6d;
+  --chip: #3a3028;
+  --chip-border: #6b5848;
+}
+
+.theme-skoob {
+  --bg: #e9f4ff;
+  --card: #ffffff;
+  --text: #1a1e25;
+  --muted: #62758a;
+  --accent: #1f8bff;
+  --chip-border: #95c4ff;
+}
+
+.theme-tumblr {
+  --bg: #36465d;
+  --card: #465a77;
+  --text: #ffffff;
+  --muted: #cfd6e0;
+  --accent: #9b59b6;
+  --chip: #529ECC;
+  --chip-border: #5a6b85;
+}
+
+.theme-gray {
+  --bg: #2c2d2f;
+  --card: #393b3e;
+  --text: #e4e4e4;
+  --muted: #a8a8a8;
+  --accent: #ffdf57;
+  --chip-border: #76787c;
+}
+
+/* ========================================= */
+/* BOTÕES DE TEMAS (corrigidos!) */
+/* ========================================= */
+
+.themes {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+
+/* CORES FIXAS DAS BOLINHAS */
+.theme-option {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.1); /* leve transparência */
+}
+
+.theme-option.theme-dark {
+  border-color: #171b27;
+  background: rgba(23, 27, 39, 0.3);
+}
+
+.theme-option.theme-dark-academia {
+  border-color: #c08a5c;
+  background: rgba(192, 138, 92, 0.3);
+}
+
+.theme-option.theme-skoob {
+  border-color: #0074d9;
+  background: rgba(0, 116, 217, 0.3);
+}
+
+.theme-option.theme-tumblr {
+  border-color: #44536d;
+  background: rgba(68, 83, 109, 0.3);
+}
+
+.theme-option.theme-gray {
+  border-color: #3a3a41;
+  background: rgba(58, 58, 65, 0.3);
+}
+
+/* Efeito hover */
+.theme-option:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏷️ Tags</h1>
+ <div class="themes">
+    <div class="theme-option theme-dark" onclick="setTheme('theme-dark')"></div>
+    <div class="theme-option theme-dark-academia" onclick="setTheme('theme-dark-academia')"></div>
+    <div class="theme-option theme-skoob" onclick="setTheme('theme-skoob')"></div>
+    <div class="theme-option theme-tumblr" onclick="setTheme('theme-tumblr')"></div>
+    <div class="theme-option theme-gray" onclick="setTheme('theme-gray')"></div>
+  </div>
+  <div class="header-buttons">
+      <button id="back">📚</button>
+      <button id="charts">📊</button>
+      <button id="tags">🏷️</button>
+      <button id="flashback">🌟</button>
+  </div>
+</header>
+
+<section class="tags-grid" id="tags-grid">
+  <!-- Cards de gêneros e subgêneros serão renderizados aqui -->
+</section>
+
+<script>
+fetch("./books.json")
+  .then(r => r.json())
+  .then(data => renderTags(data));
+
+function renderTags(list){
+  const grouped = {};
+  list.forEach(b => {
+    const genre = b.TAG1 || "Outro";
+    if(!grouped[genre]) grouped[genre] = {count:0, subs:{}};
+    grouped[genre].count++;
+    [b.TAG2, b.TAG3].filter(Boolean).forEach(sub => {
+      grouped[genre].subs[sub] = (grouped[genre].subs[sub] || 0) + 1;
+    });
+  });
+
+  const container = document.getElementById("tags-grid");
+  container.innerHTML = "";
+
+  Object.entries(grouped).forEach(([genre, info]) => {
+    const card = document.createElement("div");
+    card.className = "tag-card";
+    card.innerHTML = `
+      <h3>${genre} (${info.count} livros)</h3>
+      <ul>
+        ${Object.entries(info.subs)
+          .map(([sub, c]) => `<li>${sub}: ${c}</li>`)
+          .join("")}
+      </ul>
+    `;
+    container.appendChild(card);
+  });
+}
+// Função para aplicar tema
+function setTheme(themeClass) {
+  document.body.className = themeClass;
+  localStorage.setItem("selectedTheme", themeClass); // salva escolha
+}
+
+// Ao carregar a página, aplica o tema salvo
+document.addEventListener("DOMContentLoaded", () => {
+  const savedTheme = localStorage.getItem("selectedTheme");
+  if (savedTheme) {
+    document.body.className = savedTheme;
+  } else {
+    document.body.className = "theme-dark"; // tema padrão
+  }
+});
+
+// Navegação dos botões
+document.getElementById("charts")?.addEventListener("click", () => location.href = "charts.html");
+document.getElementById("tags")?.addEventListener("click", () => location.href = "tags.html");
+document.getElementById("flashback")?.addEventListener("click", () => location.href = "flashback.html");
+document.getElementById("back")?.addEventListener("click", () => location.href = "index.html");
+</script>
+
+</body>
+</html>
