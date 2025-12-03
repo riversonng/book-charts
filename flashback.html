@@ -134,8 +134,8 @@ header h1 {
 
 .barra-container {
   width: 100%;
-  height: 18px;
-  background: var(--bg);
+  height: 30px;
+  background: var(--bg);  
   border-radius: 6px;
   overflow: hidden;
   margin-top: 6px;
@@ -149,7 +149,6 @@ header h1 {
   align-items: center;
   justify-content: center;   /* centraliza o texto */
   color: white;
-  font-weight: 600;
   white-space: nowrap;       /* não quebra linha */
   overflow: hidden;
   text-overflow: clip;       /* esconde texto se faltar espaço */
@@ -157,21 +156,13 @@ header h1 {
   transition: width 0.4s ease;
 }
 
-.kind {
-  background: var(--accent);
-}
+.kind {  background: var(--accent); font-size: medium; color: var(--card);}
 
-.fisico {
-  background: var(--muted);
-}
+.fisico {  background: var(--muted); font-size: medium; color: var(--bg);}
 
-.pt {
-  background: var(--accent);
-}
+.pt {  background: var(--accent); font-size: medium; color: var(--card);}
 
-.in {
-  background: var(--muted);
-}
+.in {  background: var(--muted); font-size: medium; color: var(--bg);}
 
 /* ========================================= */
 /* TEMAS – EXATAMENTE OS DO TEMA PRINCIPAL */
@@ -206,8 +197,8 @@ header h1 {
 }
 
 .theme-tumblr {
-  --bg: #36465d;
-  --card: #465a77;
+  --bg: #4b5e79;
+  --card: #304461;
   --text: #ffffff;
   --muted: #cfd6e0;
   --accent: #9b59b6;
@@ -415,18 +406,32 @@ if (books.length) {
   menorLivroObj = books.reduce((min,b)=> (b.PAGES||0) < (min.PAGES||0) ? b : min, books[0]);
 }
 
-// Contagem de gêneros
+// --------- GÊNEROS (TAG1) -------------
 const generoCount = {};
-books.forEach(b=>{
-  [b.TAG1, b.TAG2, b.TAG3].forEach(tag=>{
-    if(tag){
-      generoCount[tag] = (generoCount[tag]||0)+1;
+books.forEach(b => {
+  if (b.TAG1) {
+    generoCount[b.TAG1] = (generoCount[b.TAG1] || 0) + 1;
+  }
+});
+
+const topGeneros = Object.entries(generoCount)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 5);
+
+
+// --------- SUBGÊNEROS (TAG2, TAG3) -------------
+const subgeneroCount = {};
+books.forEach(b => {
+  [b.TAG2, b.TAG3].forEach(tag => {
+    if (tag) {
+      subgeneroCount[tag] = (subgeneroCount[tag] || 0) + 1;
     }
   });
 });
-const topGeneros = Object.entries(generoCount)
-  .sort((a,b)=>b[1]-a[1])
-  .slice(0,5);
+
+const topSubgeneros = Object.entries(subgeneroCount)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 5);
 
 const greatest = books.filter(b => b.RATING === 5 && b.FAV === "YES");
 
@@ -496,7 +501,7 @@ block.innerHTML = `
         ${qtdPT} PT
       </div>
       <div class="barra in" style="width:${(qtdIN / (qtdPT + qtdIN) * 100).toFixed(1)}%">
-        ${qtdIN} EN
+        ${qtdIN} IN
       </div>
     </div>
   </div>
@@ -513,6 +518,14 @@ block.innerHTML = `
     ${topGeneros.map(([g,c])=>`${g} (${c})`).join("<br>")}
   </div>
 </div>
+
+<div class="stat"><span>✶ Subgêneros mais lidos</span>
+  <div class="val">
+    ${topSubgeneros.map(([g, c]) => `${g} (${c})`).join("<br>")}
+  </div>
+</div>
+
+
 <div class="stat"><span>☾☼ Maior/Menor</span>
 ▲ ${maiorLivroObj ? maiorLivroObj.TITLE+" ("+maiorLivroObj.PAGES+" pág)" : "-"}<br>
 ▼ ${menorLivroObj ? menorLivroObj.TITLE+" ("+menorLivroObj.PAGES+" pág)" : "-"}
